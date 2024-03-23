@@ -1,8 +1,9 @@
 from turtle import Turtle
 import random
 
+
 class Food(Turtle):
-    """This class inherits from turtle module and it creates the food in the game"""
+    """This class inherits from turtle module, and it creates the food in the game"""
 
     def __init__(self):
         super().__init__()

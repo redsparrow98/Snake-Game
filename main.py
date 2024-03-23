@@ -4,20 +4,19 @@ from food import Food
 from scoreboard import Scoreboard
 import time
 
-#####################  SCREEN  ###################
+# =====================     SCREEN      =====================
 screen = Screen()
 screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.title("Snake Game")
-# the tracker turns off the animations and we use update to show whats happened on screen
+# the tracker turns off the animations, and we use update to show what's happened on screen
 screen.tracer(0)
-##################################################
+# ============================================================
 
 # make the initial 3square snake object
 snake = Snake()
 food = Food()
 scoreboard = Scoreboard()
-
 
 screen.listen()
 screen.onkey(snake.up, "Up")
@@ -25,13 +24,13 @@ screen.onkey(snake.down, "Down")
 screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
 
-###################### GAME  #########################
+# ===================== GAME  =====================
 game_is_on = True
 
 while game_is_on:
-    # use update at the start of each loop to see whats happened on screen
+    # use update at the start of each loop to see what's happened on screen
     screen.update()
-    # slow down the time after each loop starts bu a little
+    # slow down the time after each loop starts by a little
     time.sleep(0.1)
     snake.move()
 
@@ -43,13 +42,13 @@ while game_is_on:
 
     # detect collision with wall
     if (snake.head.xcor() > 280 or
-        snake.head.xcor() < -280 or
-        snake.head.ycor() > 280 or
-        snake.head.ycor() < -280):
+            snake.head.xcor() < -280 or
+            snake.head.ycor() > 280 or
+            snake.head.ycor() < -280):
         scoreboard.reset()
         snake.reset()
 
-    # detecting collision with tale
+    # detecting collision with a tale
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) < 10:
             scoreboard.reset()
