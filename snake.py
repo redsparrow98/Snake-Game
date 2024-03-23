@@ -23,7 +23,6 @@ class Snake:
             self.add_segment(position)
 
     def add_segment(self, position):
-        """adds another segment to the snake body"""
         new_segment = Turtle("square")
         new_segment.color("white")
         new_segment.penup()
@@ -35,9 +34,9 @@ class Snake:
         self.add_segment(self.segments[-1].position())
 
     def reset(self):
-        """sends the segments of the current snake in the list off-screen then
-        clears the segment's list of previous items, then creates a new snake in
-        the middle of the screen and sets the first segment as the head of the snake"""
+        """sends the segments of the current snake in the list off-screen then clears the segment list
+        of previous items, then creates a new snake in the middle of the screen and sets the first segment
+        as the head of the snake"""
         for seg in self.segments:
             seg.goto(1000, 1000)
         self.segments.clear()
@@ -45,20 +44,20 @@ class Snake:
         self.head = self.segments[0]
 
     def move(self):
-        """moves the snake forward continuously and make the rest of the body follow the head"""
-        # we move the last segment to second to last make a loop for it.
-        # the range is start = length of a segment list, stop is 0 and not included that is 1st
-        # seg in our seg list and step is -1 we are moving backwards in range
+        """moves the snake forward continuosly and make the rest of the body follow the head"""
+        # we move the last segment to second to last make a loop for it. the range is
+        # start = length of a segment list, stop is 0 and not included that is 1st seg in our seg list.
+        # and the step is -1 we are moving backwards in range
         for seg_num in range(len(self.segments) - 1, 0, -1):
             # new x nad y is the position of the second to last in range, and we
             # get its x and y coordinates
             new_x = self.segments[seg_num - 1].xcor()
             new_y = self.segments[seg_num - 1].ycor()
-        # we want the last segment in the list to move to the position of the previous one.
-        # so we find the position of the previous one first
-        self.segments[seg_num].goto(x=new_x, y=new_y)
+            # we want the last segment in the list to move to the position of the previous one.
+            # so we find the position of the previous one first
+            self.segments[seg_num].goto(x=new_x, y=new_y)
         # and we move the head of the snake seg 0 and all the other ones follow
-        # to its previous position down the chain
+        # to its previous position down the chaine
         self.head.forward(MOVE_DISTANCE)
 
     def up(self):
